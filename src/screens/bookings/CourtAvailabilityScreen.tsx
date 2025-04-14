@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
     slotsContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        justifyContent: 'space-between',
     },
     slot: {
         paddingVertical: 10,

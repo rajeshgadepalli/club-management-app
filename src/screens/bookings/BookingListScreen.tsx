@@ -17,10 +17,10 @@ const BookingListScreen = () => {
     const navigation = useNavigation();
 
     const sports = [
-        { name: 'Snooker', image: { uri: 'https://plus.unsplash.com/premium_photo-1667117794358-a59991cc4d7d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' } },
-        { name: 'Badminton', image: { uri: 'https://images.unsplash.com/photo-1708312604109-16c0be9326cd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' } },
-        { name: 'Table Tennis', image: { uri: 'https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' } },
-        { name: 'Lawn Tennis', image: { uri: 'https://images.unsplash.com/photo-1682369368407-9ca29b7a96a3?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' } },
+        { name: 'Snooker', image: require('@/assets/images/snooker.png') },
+        { name: 'Badminton', image: require('@/assets/images/badminton.png') },
+        { name: 'Table Tennis', image: require('@/assets/images/table-tennis.png') },
+        { name: 'Lawn Tennis', image: require('@/assets/images/lawn-tennis.png') },
     ];
 
     const showModal = () => setVisible(true);
