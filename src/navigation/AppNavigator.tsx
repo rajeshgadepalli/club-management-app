@@ -11,6 +11,7 @@ import LogoutButton from "@/components/common/LogoutButton";
 import LoginScreen from "@/screens/auth/LoginScreen";
 import Dashboard from "@/screens/Dashboard";
 import DealerStack from "./DealerStack";
+import BookingStack from "./BookingStack";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -54,6 +55,19 @@ export default function AppNavigator() {
           drawerIcon: ({ color, size }: { color: string; size: number }) => (
             <MaterialCommunityIcons
               name="account-group"
+              size={size}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Bookings"
+        component={BookingStack}
+        options={{
+          drawerIcon: ({ color, size }: { color: string; size: number }) => (
+            <MaterialCommunityIcons
+              name="calendar"
               size={size}
               color={color}
             />
