@@ -11,13 +11,7 @@ import LogoutButton from "@/components/common/LogoutButton";
 import LoginScreen from "@/screens/auth/LoginScreen";
 import Dashboard from "@/screens/Dashboard";
 import DealerStack from "./DealerStack";
-import SalesStack from "./SalesStack";
-import UnplannedActivityStack from "./UnplannedActivityStack";
-import DeliveryStack from "./DeliveryStack";
-import PaymentStack from "./PaymentStack";
 
-import ExpenseStack from "./ExpenseStack";
-import SalesReturnStack from "./SalesReturnStack";
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -60,86 +54,6 @@ export default function AppNavigator() {
           drawerIcon: ({ color, size }: { color: string; size: number }) => (
             <MaterialCommunityIcons
               name="account-group"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Sales Orders"
-        component={SalesStack}
-        options={{
-          title: "Sales Orders",
-          drawerIcon: ({ color, size }: { color: string; size: number }) => (
-            <MaterialCommunityIcons name="cart" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Deliveries"
-        component={DeliveryStack}
-        options={{
-          title: "Deliveries",
-          drawerIcon: ({ color, size }: { color: string; size: number }) => (
-            <MaterialCommunityIcons
-              name="truck-delivery"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Payments"
-        component={PaymentStack}
-        options={{
-          title: "Payments",
-          drawerIcon: ({ color, size }: { color: string; size: number }) => (
-            <MaterialCommunityIcons
-              name="cash-multiple"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Unplanned Activities"
-        component={UnplannedActivityStack}
-        options={{
-          title: "Unplanned Activities",
-          drawerIcon: ({ color, size }: { color: string; size: number }) => (
-            <MaterialCommunityIcons
-              name="clipboard-list"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Expenses"
-        component={ExpenseStack}
-        options={{
-          title: "Expenses",
-          drawerIcon: ({ color, size }: { color: string; size: number }) => (
-            <MaterialCommunityIcons
-              name="credit-card-minus"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Sales Returns"
-        component={SalesReturnStack}
-        options={{
-          title: "Sales Returns",
-          drawerIcon: ({ color, size }: { color: string; size: number }) => (
-            <MaterialCommunityIcons
-              name="backup-restore"
               size={size}
               color={color}
             />
