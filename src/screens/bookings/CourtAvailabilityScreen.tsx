@@ -69,8 +69,19 @@ const CourtAvailabilityScreen = () => {
                                     selectedDate.toDateString() === item.toDateString() && styles.selectedDateItem,
                                 ]}
                             >
-                                <Text style={styles.dateText}>{format(item, 'dd')}</Text>
-                                <Text style={styles.monthText}>{format(item, 'MMM')}</Text>
+                                <Text style={[
+                                    styles.dateText,
+                                    selectedDate.toDateString() === item.toDateString() && styles.selectedDateTextWhite
+                                ]}>
+                                    {format(item, 'dd')}
+                                </Text>
+                                <Text style={[
+                                    styles.monthText,
+                                    selectedDate.toDateString() === item.toDateString() && styles.selectedDateTextWhite
+                                ]}>
+                                    {format(item, 'MMM')}
+                                </Text>
+
                             </TouchableOpacity>
                         )}
                     />
@@ -122,7 +133,7 @@ const CourtAvailabilityScreen = () => {
                                                     : styles.availableSlotText
                                         }
                                     >
-                                        {slot.time}
+                                        {slot.time.split(' - ')[0]}
                                     </Text>
                                 </TouchableOpacity>
                             ))}
@@ -164,11 +175,13 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
     },
     slot: {
-        padding: 10,
+        paddingVertical: 10,
         margin: 5,
-        borderRadius: 5,
-        width: '45%',
+        borderRadius: 12,          // <- Soft rounded pill shape
+        width: '20%',
+        minWidth: 60,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     availableSlot: {
         backgroundColor: '#FFFFFF',
@@ -212,7 +225,7 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     selectedDateItem: {
-        backgroundColor: colors.primary,
+        backgroundColor: colors.primary
     },
     dateText: {
         fontSize: 16,
@@ -229,6 +242,9 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         textAlign: 'center',
         color: colors.textPrimary,
+    },
+    selectedDateTextWhite: {
+        color: '#FFFFFF',
     },
     pickerContainer: {
         marginTop: 10,
