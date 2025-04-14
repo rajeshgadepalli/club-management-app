@@ -1,0 +1,33 @@
+{
+    "build": {
+        "development": {
+            "developmentClient": true,
+            "distribution": "internal",
+            "env": {
+                "EXPO_PUBLIC_API_URL": "https://aqua-api-dev.flyinglotus.in/api",
+                "EXPO_PUBLIC_UPLOAD_URL": "https://aqua-api-dev.flyinglotus.in/uploads/"
+            }
+        },
+        "preview": {
+            "distribution": "internal",
+            "env": {
+                "EXPO_PUBLIC_API_URL": "https://aqua-api-dev.flyinglotus.in/api",
+                "EXPO_PUBLIC_UPLOAD_URL": "https://aqua-api-dev.flyinglotus.in/uploads/"
+            }
+        },
+        "production": {
+            "env": {
+                "NODE_OPTIONS": "--max_old_space_size=4096",
+                "EXPO_DEBUG": "true",
+                "EXPO_PUBLIC_API_URL": "https://aqua-api-dev.flyinglotus.in/api",
+                "EXPO_PUBLIC_UPLOAD_URL": "https://aqua-api-dev.flyinglotus.in/uploads/"
+            },
+            "android": {
+                "buildType": "apk"
+            }
+        }
+    },
+    "submit": {
+        "production": {}
+    }
+}

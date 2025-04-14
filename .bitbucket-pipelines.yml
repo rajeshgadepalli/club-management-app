@@ -1,0 +1,22 @@
+pipelines:
+  custom:
+    manual-github-sync:
+      - step:
+          name: Manual Sync from GitHub (main → dev)
+          image: atlassian/default-image:3
+          script:
+            - git config --global user.name "Bitbucket Bot"
+            - git config --global user.email "bot@bitbucket.org"
+
+            # Clone GitHub main
+            - git clone --single-branch --branch main https://${GITHUB_USERNAME}:${GITHUB_PAT}@github.com/${GITHUB_USERNAME}/sambhavi-new-sales-app.git github-temp
+            - cd github-temp
+            - git log --oneline -n 5
+
+            # Add Bitbucket remote and force push to dev branch
+            #- git remote add bitbucket https://x-token-auth:$BITBUCKET_TOKEN@bitbucket.org/rajesh_techub/sambhavi-new-sales-app.git
+            #- git push origin main:dev --force
+            #- git remote add bitbucket https://x-token-auth:$BITBUCKET_TOKEN@bitbucket.org/rajesh_techub/sambhavi-new-sales-app.git
+            #- git push bitbucket main:dev --force
+            - git remote add bitbucket https://${BB_SYNC_USERNAME}:${BB_SYNC_APP_PASSWORD}@bitbucket.org/rajesh_techub/sambhavi-new-sales-app.git
+            - git push bitbucket main:dev --force

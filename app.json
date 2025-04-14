@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "sambhavi-new-sales-app",
+    "slug": "sambhavi-new-sales-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "jsEngine": "hermes",
+    "extra": {
+      "apiUrl": {
+        "development": "http://localhost:8082/api",
+        "preview": "https://shivashakthi-api-dev.siteezee.com/api",
+        "production": "https://shivashakthi-api-dev.siteezee.com/api"
+      },
+      "uploadUrl": {
+        "development": "http://localhost:8082/api/uploads",
+        "preview": "https://shivashakthi-api-dev.siteezee.com/uploads/",
+        "production": "https://shivashakthi-api-dev.siteezee.com/uploads/"
+      },
+      "eas": {
+        "projectId": "example-project-id"
+      }
+    },
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.techub.ffa.marketing.shanmukha"
+    },
+    "web": {
+      "favicon": "./src/assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}
