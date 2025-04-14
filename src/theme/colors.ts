@@ -1,7 +1,7 @@
 const colors = {
   primary: '#4CAF50', // Soothing green
   secondary: '#8BC34A', // Light green
-  background: '#F5F5F5', // Light gray for background
+  background: '#FFFFFF', // Light gray for background
   surface: '#FFFFFF', // White for cards and surfaces
   error: '#E57373', // Softer red for errors
   textPrimary: '#212121', // Dark gray for primary text

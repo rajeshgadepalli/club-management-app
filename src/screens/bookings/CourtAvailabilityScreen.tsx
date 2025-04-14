@@ -27,6 +27,17 @@ const mockCourtData = Array.from({ length: 4 }, (_, i) => ({
 const CourtAvailabilityScreen = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedCourt, setSelectedCourt] = useState(mockCourtData[0].court);
+    const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
+
+    const toggleSlotSelection = (slotTime: string) => {
+        setSelectedSlots((prevSelectedSlots) => {
+            if (prevSelectedSlots.includes(slotTime)) {
+                return prevSelectedSlots.filter((time) => time !== slotTime);
+            } else {
+                return [...prevSelectedSlots, slotTime];
+            }
+        });
+    };
 
     const selectedCourtData = mockCourtData.find(c => c.court === selectedCourt);
 
@@ -37,70 +48,92 @@ const CourtAvailabilityScreen = () => {
     });
 
     return (
-        <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
-            style={{ flex: 1 }}
-        >
-            <View style={styles.container}>
-                {/* Date Picker */}
-                <FlatList
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={styles.dateListContainer} // Ensure proper styling for the FlatList
-                    data={dates}
-                    keyExtractor={(item) => item.toISOString()}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity
-                            onPress={() => setSelectedDate(item)}
-                            style={[
-                                styles.dateItem,
-                                selectedDate.toDateString() === item.toDateString() && styles.selectedDateItem,
-                            ]}
-                        >
-                            <Text style={styles.dateText}>{format(item, 'dd')}</Text>
-                            <Text style={styles.monthText}>{format(item, 'MMM')}</Text>
-                        </TouchableOpacity>
-                    )}
-                />
-
-                {/* Selected Date Display */}
-                <Text style={styles.selectedDateText}>
-                    Selected Date: {format(selectedDate, 'dd MMM yyyy')}
-                </Text>
-
-                {/* Court Dropdown */}
-                <View style={styles.pickerContainer}>
-                    <Text style={styles.pickerLabel}>Select Court:</Text>
-                    <Picker
-                        selectedValue={selectedCourt}
-                        onValueChange={(value) => setSelectedCourt(value)}
-                        style={styles.picker}
-                    >
-                        {mockCourtData.map(court => (
-                            <Picker.Item label={court.court} value={court.court} key={court.court} />
-                        ))}
-                    </Picker>
-                </View>
-
-                {/* Slots for Selected Court */}
-                <View style={styles.courtContainer}>
-                    <Text style={styles.courtTitle}>{selectedCourt}</Text>
-                    <View style={styles.slotsContainer}>
-                        {selectedCourtData?.slots.map((slot, index) => (
+        <View style={{ flex: 1 }}>
+            <ScrollView
+                contentContainerStyle={{ flexGrow: 1, paddingBottom: 80 }} // Add padding to prevent content from going behind the button
+                style={{ flex: 1 }}
+            >
+                <View style={styles.container}>
+                    {/* Date Picker */}
+                    <FlatList
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={styles.dateListContainer} // Ensure proper styling for the FlatList
+                        data={dates}
+                        keyExtractor={(item) => item.toISOString()}
+                        renderItem={({ item }) => (
                             <TouchableOpacity
-                                key={index}
-                                style={[styles.slot, slot.booked ? styles.bookedSlot : styles.availableSlot]}
-                                disabled={slot.booked}
+                                onPress={() => setSelectedDate(item)}
+                                style={[
+                                    styles.dateItem,
+                                    selectedDate.toDateString() === item.toDateString() && styles.selectedDateItem,
+                                ]}
                             >
-                                <Text style={slot.booked ? styles.bookedSlotText : styles.availableSlotText}>
-                                    {slot.time}
-                                </Text>
+                                <Text style={styles.dateText}>{format(item, 'dd')}</Text>
+                                <Text style={styles.monthText}>{format(item, 'MMM')}</Text>
                             </TouchableOpacity>
-                        ))}
+                        )}
+                    />
+
+                    {/* Selected Date Display */}
+                    <Text style={styles.selectedDateText}>
+                        Selected Date: {format(selectedDate, 'dd MMM yyyy')}
+                    </Text>
+
+                    {/* Court Dropdown */}
+                    <View style={styles.pickerContainer}>
+                        <Text style={styles.pickerLabel}>Select Court:</Text>
+                        <View style={styles.picker}>
+                            <Picker
+                                selectedValue={selectedCourt}
+                                onValueChange={(value) => setSelectedCourt(value)}
+                            >
+                                {mockCourtData.map(court => (
+                                    <Picker.Item label={court.court} value={court.court} key={court.court} />
+                                ))}
+                            </Picker>
+                        </View>
+                    </View>
+
+                    {/* Slots for Selected Court */}
+                    <View style={styles.courtContainer}>
+                        <Text style={styles.courtTitle}>{selectedCourt}</Text>
+                        <View style={styles.slotsContainer}>
+                            {selectedCourtData?.slots.map((slot, index) => (
+                                <TouchableOpacity
+                                    key={index}
+                                    style={[
+                                        styles.slot,
+                                        slot.booked
+                                            ? styles.bookedSlot
+                                            : selectedSlots.includes(slot.time)
+                                                ? styles.selectedSlot
+                                                : styles.availableSlot,
+                                    ]}
+                                    disabled={slot.booked}
+                                    onPress={() => toggleSlotSelection(slot.time)}
+                                >
+                                    <Text
+                                        style={
+                                            slot.booked
+                                                ? styles.bookedSlotText
+                                                : selectedSlots.includes(slot.time)
+                                                    ? styles.selectedSlotText
+                                                    : styles.availableSlotText
+                                        }
+                                    >
+                                        {slot.time}
+                                    </Text>
+                                </TouchableOpacity>
+                            ))}
+                        </View>
                     </View>
                 </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+            <TouchableOpacity style={styles.bookButton} onPress={() => console.log('Booking slots:', selectedSlots)}>
+                <Text style={styles.bookButtonText}>CONFIRM BOOKING</Text>
+            </TouchableOpacity>
+        </View>
     );
 };
 
@@ -147,6 +180,11 @@ const styles = StyleSheet.create({
         borderColor: '#CCC',
         borderWidth: 1,
     },
+    selectedSlot: {
+        backgroundColor: colors.primary,
+        borderColor: colors.secondary,
+        borderWidth: 1,
+    },
     slotText: {
         fontWeight: '600',
     },
@@ -157,6 +195,10 @@ const styles = StyleSheet.create({
     bookedSlotText: {
         color: '#999999', // light gray
         fontWeight: '400',
+    },
+    selectedSlotText: {
+        color: colors.surface,
+        fontWeight: 'bold',
     },
     dateItem: {
         padding: 10,
@@ -200,11 +242,29 @@ const styles = StyleSheet.create({
     },
     picker: {
         backgroundColor: colors.surface,
+        borderWidth: 1,
+        borderColor: colors.divider,
         borderRadius: 5,
+        paddingHorizontal: 10, // Add padding to ensure content is not touching the border
+        height: 50, // Set a fixed height for consistent appearance
     },
     dateListContainer: {
         paddingVertical: 10,
         backgroundColor: colors.surface,
+    },
+    bookButton: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: colors.primary,
+        padding: 15,
+        alignItems: 'center',
+    },
+    bookButtonText: {
+        color: colors.surface,
+        fontSize: 14,
+        fontWeight: 'bold',
     },
 });
 
