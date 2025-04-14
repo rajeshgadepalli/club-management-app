@@ -1,24 +1,14 @@
-import { Theme } from './types';
-
-export const COLORS: Theme['colors'] = {
-  primary: '#2E7D32',
-  primaryLight: '#4CAF50',
-  secondary: '#388E3C',
-  accent: '#4CAF50',
-  background: '#FFFFFF',
-  surface: '#FFFFFF',
-  error: '#D32F2F',
-  text: '#212121',
-  disabled: '#9E9E9E',
-  placeholder: '#757575',
-  backdrop: 'rgba(0, 0, 0, 0.5)',
-  border: '#E0E0E0',
-  inputBorder: '#BDBDBD',
-  status: {
-    success: '#4CAF50',
-    warning: '#FFC107',
-    error: '#F44336',
-    info: '#2196F3',
-  },
-
+const colors = {
+  primary: '#4CAF50', // Soothing green
+  secondary: '#8BC34A', // Light green
+  background: '#F5F5F5', // Light gray for background
+  surface: '#FFFFFF', // White for cards and surfaces
+  error: '#E57373', // Softer red for errors
+  textPrimary: '#212121', // Dark gray for primary text
+  textSecondary: '#757575', // Medium gray for secondary text
+  divider: '#BDBDBD', // Light gray for dividers
+  success: '#81C784', // Soft green for success messages
+  warning: '#FFB74D', // Soft orange for warnings
 };
+
+export default colors;
