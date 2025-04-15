@@ -10,6 +10,9 @@ export interface Theme {
     surface: string;
     error: string;
     text: string;
+    textPrimary: string;
+    textSecondary: string;
+    divider: string;
     disabled: string;
     placeholder: string;
     backdrop: string;

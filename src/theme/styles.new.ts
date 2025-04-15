@@ -363,6 +363,12 @@ export const appStyles = StyleSheet.create({
     color: '#FFFFFF',
   },
 
+  textRedMediumBold: {
+    color: 'red',
+    fontWeight: '500', // medium-bold
+  },
+  
+
   // =============================================================================
   // Common UI Elements
   // =============================================================================

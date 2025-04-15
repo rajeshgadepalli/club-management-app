@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker'; // Install this if not already
 import { format } from 'date-fns';
-import colors from '@/theme/colors';
+import { COLORS } from '@/theme';
 
 // Generate hourly slots between 6AM and 11PM
 const generateHourlySlots = () => {
@@ -152,14 +152,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 16,
-        backgroundColor: colors.background,
+        backgroundColor: COLORS.background,
     },
     courtContainer: {
         marginTop: 20,
-        backgroundColor: colors.surface,
+        backgroundColor: COLORS.surface,
         borderRadius: 8,
         padding: 10,
-        shadowColor: colors.divider,
+        shadowColor: COLORS.divider,
         shadowOpacity: 0.2,
         shadowRadius: 4,
         elevation: 2,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 10,
-        color: colors.textPrimary,
+        color: COLORS.textPrimary,
     },
     slotsContainer: {
         flexDirection: 'row',
@@ -195,8 +195,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     selectedSlot: {
-        backgroundColor: colors.primary,
-        borderColor: colors.secondary,
+        backgroundColor: COLORS.primary,
+        borderColor: COLORS.secondary,
         borderWidth: 1,
     },
     slotText: {
@@ -211,38 +211,38 @@ const styles = StyleSheet.create({
         fontWeight: '400',
     },
     selectedSlotText: {
-        color: colors.surface,
+        color: COLORS.surface,
         fontWeight: 'bold',
     },
     dateItem: {
         padding: 10,
         margin: 5,
         borderRadius: 5,
-        backgroundColor: colors.surface,
+        backgroundColor: COLORS.surface,
         alignItems: 'center',
-        shadowColor: colors.divider,
+        shadowColor: COLORS.divider,
         shadowOpacity: 0.2,
         shadowRadius: 4,
         elevation: 2,
     },
     selectedDateItem: {
-        backgroundColor: colors.primary
+        backgroundColor: COLORS.primary
     },
     dateText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: colors.textPrimary,
+        color: COLORS.textPrimary,
     },
     monthText: {
         fontSize: 14,
-        color: colors.textSecondary,
+        color: COLORS.textSecondary,
     },
     selectedDateText: {
         fontSize: 18,
         fontWeight: 'bold',
         marginVertical: 10,
         textAlign: 'center',
-        color: colors.textPrimary,
+        color: COLORS.textPrimary,
     },
     selectedDateTextWhite: {
         color: '#FFFFFF',
@@ -255,31 +255,31 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '600',
         marginBottom: 5,
-        color: colors.textPrimary,
+        color: COLORS.textPrimary,
     },
     picker: {
-        backgroundColor: colors.surface,
+        backgroundColor: COLORS.surface,
         borderWidth: 1,
-        borderColor: colors.divider,
+        borderColor: COLORS.divider,
         borderRadius: 5,
         paddingHorizontal: 10, // Add padding to ensure content is not touching the border
         height: 50, // Set a fixed height for consistent appearance
     },
     dateListContainer: {
         paddingVertical: 10,
-        backgroundColor: colors.surface,
+        backgroundColor: COLORS.surface,
     },
     bookButton: {
         position: 'absolute',
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: colors.primary,
+        backgroundColor: COLORS.primary,
         padding: 15,
         alignItems: 'center',
     },
     bookButtonText: {
-        color: colors.surface,
+        color: COLORS.surface,
         fontSize: 14,
         fontWeight: 'bold',
     },
